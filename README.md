@@ -1,4 +1,4 @@
-# Thanks for entering the Microsoft Fizzyo Challenge
+# Thanks for helping the Microsoft Fizzyo Challenge
 
 Our hope is the Fizzyo device this will motivate children to do their physio every day and potentially help other families with Cystic Fibrosis as well!
 
@@ -111,7 +111,7 @@ In relation to output of the games from Health Hack we would like to implement a
 
 - If your new to Unity you can build 2D or 3D games for the Fizzyo device [see] (https://unity3d.com/learn) for resources and tutorials.
 
-- All attendees will be provided with [Microsoft Azure](https://azure.microsoft.com) you will recieve $100 credit per month for 6 months 
+- [Microsoft Azure](https://azure.microsoft.com)  
 
 - If you develop any cloud services please ensure all necessary scripts, database schema and scripts are added to the github repo.
 
@@ -138,9 +138,9 @@ In future you can add Windows 10/Xbox Live Creators Update - - - [Add Xbox Gamin
 
 A great tool for Visualisation and charting is [Microsoft PowerBI](http://www.powerbi.com) if your new to PowerBI or data visualisation then please watch this short webinar which wil give you an overview of data visualisation with [Power BI](https://info.microsoft.com/UK-MSFT-WBNR-FY17-12Dec-05-MicrosoftAzureBringyourDatatoLifePowerBIWebinar-269449_Registration.html)
 
-## Hack entry specific requirements for this challenge
+## Game Deliverables
 
-- All output from Health Hack will be under GNU open-source licensing and all entries stored within [this organisation](https://github.com/ichealthhack).
+- All output fro  be under GNU open-source licensing and all entries stored within [this organisation](https://github.com/Fizzyo).
 
 - All games should be ideally developed to become cross platform iOS, Android, Windows 10 and Windows Desktop the input for the game will use Phyiso equipment specially PEP and Acapella devices.
 
@@ -156,7 +156,7 @@ A great tool for Visualisation and charting is [Microsoft PowerBI](http://www.po
 
 - Microsoft Azure Cloud services will be provided to all attendees to add cloud need services to the hack entries.
 
-## Submission and Judging requirements
+## Submission requirements for Github Repo
 
 - A brief presentation on the purpose of your game and how to use it.
 
@@ -176,14 +176,3 @@ A great tool for Visualisation and charting is [Microsoft PowerBI](http://www.po
 
 - Details of the games architecture and database schemas should be documented within the submissions
 
-## Prizes for best Hack Entry
-
-- [Microsoft Band 2](https://www.microsoft.com/microsoft-band/en-gb)
-- [Microsoft Adafruit Feather M0 Kit (Arduino-compatible)](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-adafruit-feather-m0-wifi-kit-arduino-get-started)
-- Microsoft Goodie Bag
-- Microsoft T Shirt
-- Microsoft Xbox Onezie
-
-## Charity Donations & Giving
-
-As part of Health Hack Microsoft will be match funding any donations which are given to the Cystic Fibrosis Trust via the following site http://aka.ms/healthhack  
