@@ -16,20 +16,74 @@ The Fizzyo device appears as a Joystick on the computer, so you simply need to h
 
 ```
 //(bool) Will return if the Fizzyo button is pressed or not.
-Input.GetButtonDown("Fire1");
+bool buttonPresed = Input.GetButtonDown("Fire1");
 
 //(float) returns breath strength from (-1 – 1) with 0 being not breathing,
           > 0.7 blowing or breathing out hard and < -0.5 breathing in hard
-Input.GetAxis("Horizontal");
+float pressure = Input.GetAxis("Horizontal");
 ```
-## Example of Bluetooth Joytsicks which can be used to replicate the devices
 
-Analogue Joystick input is required. 
+Grab the Fizzyo library from the sample and reference it in your project.
 
-[Motionjoy® Mini Wireless Bluetooth Joystick GamePad Controller Selfie Remote Shutter for IOS Android Phone PC Tablet VR (Black)](https://www.amazon.co.uk/gp/product/B01AI9CZVE/ref=oh_aui_detailpage_o01_s01?ie=UTF8&psc=1)
+To capture if the button on the Fizzyo device
+```
+//(bool) Will return if the Fizzyo Device button is pressed or not.
+bool buttonPresed = FizzyoDevice.ButtonDown(); 
 
-[VR Wireless Bluetooth Remote Gamepad Controller for Android IOS Phone Tablet](https://www.amazon.co.uk/gp/product/B01LZJ3ZLU/ref=oh_aui_detailpage_o01_s00?ie=UTF8&psc=1)
+//Or get the input direct from the gamePad:
+bool buttonPresed = Keyboard.GetState().IsKeyDown(Keys.A);
+```
+To get the current blowing pressure from the Fizzyo device:
+```
+//(float) returns breath strength from (-1 – 1) with 0 being not breathing,
+          > 0.7 blowing or breathing out hard and < -0.5 breathing in hard
+float pressure = FizzyoDevice.Pressure();
 
+//Or get the input direct from the gamePad:
+float pressure = GamePad.GetState(0).ThumbSticks.Left.X;
+```
+
+With the MonoGame sample library, we also provide an InputManagement system, examine the sample in it's use.
+
+### New BreathRecogniser control:
+To help with detecting breath lengths / pressure and whether the player is blowing in to the Fizzyo device, a helper class has been provided.
+Breath Analyser class decouples the logic of recognizing breaths from a stream of pressure samples from acting on the recognition.
+
+To use:
+
+    1. Create an instance of BreathAnalyser, passing in the calibration values for MaxPressure and MaxBreathLength: 
+```
+BreathAnalyser breathAnalyser = new BreathAnalyser(MaxPressure, MaxBreathLength);
+```
+    2. Register for the ExhalationCompleteEvent: 
+```
+    breathAnalyser.ExhalationComplete += ExhalationCompleteHandler;
+```
+    3. Add pressure samples in the update loop: 
+```
+AddSample(Time.DeltaTime, pressure);
+```
+    4. The event will fire at the end of an exhaled breath and provide information for:
+    
+       a) BreathLength
+       b) BreathCount
+       c) ExhaledVolume
+       d) IsBreathGood
+    
+    5. You can interrogate the breath analyser at any time to determine:
+    
+       a) BreathLength
+       b) BreathCount
+       c) ExhaledVolume
+       d) IsExhaling
+       e) MaxPressure
+       f) MaxBreathLength
+    
+The algorithm for determining whether a breath is good or not is encapsulated in the method:
+``` 
+IsBreathGood()
+```
+This currently returns true if the average breath pressure and breath length is within 80% of the max.
 
 ## Typical Physio Sequence
 - 9 - 10 cycles of the following routine
@@ -64,11 +118,14 @@ In relation to output of the games from Health Hack we would like to implement a
 
 - We will be making available 3 x Fizzyo Acepella Engineering devices to hacker for testing of game content
 
-### Test Data from devices + Sample Unity Game
+### Test Data from devices + Samples
 
 - We have provided a Unity Sample Game which shows the input methods - see [Fizzyo-Unity-Example](https://github.com/ichealthhack/fizzyo-challenge/tree/master/Fizzyo-Unity-Example) Folder which contains pre calibration information, a sample game and test harness + test data
 
-- We have provided a Unity Test Harness and sample data. The data data set of captured results from the devices are for games testing. This includes an example that allows you to load and playback breath data saved from a fizzyo device.
+- We have provided a MonoGame Sample Game which shows the input methods - see [Fizzyo-Monogame-Example](https://github.com/ichealthhack/fizzyo-challenge/tree/master/Fizzyo-MonoGame-Example) Folder which contains pre calibration information, a sample game and test harness + test data
+The MonoGame Project provides the FizzyoDevice classes in a separate PCL project, for easy use in your game together with a handy InputManagement system and the BreathAnalyser helper.
+
+- We have provided Test Harnesses and sample data. The data data set of captured results from the devices are for games testing. This includes an example that allows you to load and playback breath data saved from a fizzyo device.
 
 ## How the Devices are used by Patients and how this should be related to game play
 

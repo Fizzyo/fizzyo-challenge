@@ -460,17 +460,28 @@ namespace MonoGame_DesktopGL
             spriteBatch.DrawString(statsFont, GameConstants.StrInstructions1,
                 strPosition, Color.White);
 
-            strInstructionsSize =
-                statsFont.MeasureString(GameConstants.StrInstructions2);
+            strInstructionsSize = statsFont.MeasureString(GameConstants.StrInstructions2);
             strCenter = new Vector2(strInstructionsSize.X / 2,
                 strInstructionsSize.Y / 2);
-            yOffsetText =
+            yOffsetText = 30 +
                 (viewportSize.Y / 2 - strCenter.Y) + statsFont.LineSpacing;
             xOffsetText = (viewportSize.X / 2 - strCenter.X);
             strPosition = new Vector2((int)xOffsetText, (int)yOffsetText);
 
             spriteBatch.DrawString(statsFont, GameConstants.StrInstructions2,
                 strPosition, Color.LightGray);
+
+            strInstructionsSize = statsFont.MeasureString(GameConstants.StrInstructions3);
+            strCenter = new Vector2(strInstructionsSize.X / 2,
+                strInstructionsSize.Y / 2);
+            yOffsetText = 70 +
+                (viewportSize.Y / 2 - strCenter.Y) + statsFont.LineSpacing;
+            xOffsetText = (viewportSize.X / 2 - strCenter.X);
+            strPosition = new Vector2((int)xOffsetText, (int)yOffsetText);
+
+            spriteBatch.DrawString(statsFont, GameConstants.StrInstructions3,
+                strPosition, Color.LightGray);
+
             spriteBatch.End();
 
             //re-enable depth buffer after sprite batch disablement
