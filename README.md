@@ -23,6 +23,7 @@ bool buttonPresed = Input.GetButtonDown("Fire1");
 float pressure = Input.GetAxis("Horizontal");
 ```
 
+### If you are developing in MonoGame, you can use the following commands:
 Grab the Fizzyo library from the sample and reference it in your project.
 
 To capture if the button on the Fizzyo device
