@@ -27,9 +27,13 @@ namespace MonoGame_DesktopGL
         float pressurevalue;
         float maxpressurevalue = 1;
         bool fizzyoButtonPressed;
+        BreathRecogniser breathRecogniser;
+        public float maxPressure = 0.4f;
+        public float maxBreathLength = 3f;
 
         //Game Properties
         int retrievedFuelCells;
+        float currentPower;
         TimeSpan startTime, roundTimer, roundTime;
         Random random;
         SpriteFont statsFont;
@@ -45,6 +49,20 @@ namespace MonoGame_DesktopGL
         Barrier[] barriers;
 
         Texture2D blankTexture;
+
+        public float CurrentPower
+        {
+            get { return currentPower; }
+            set
+            {
+                if (value > 0)
+                {
+                    currentPower = value;
+                }
+            }
+        }
+        //Don't let the player move, if they are breathing in to the device
+        public bool CanMove;
 
         public Game1()
         {
@@ -64,7 +82,8 @@ namespace MonoGame_DesktopGL
             fizzyo.useRecordedData = true; // Change this value to use actual values instead of recorded data
             Services.AddService(typeof(FizzyoDevice), fizzyo);
 
-
+            breathRecogniser = new BreathRecogniser(maxPressure, maxBreathLength);
+            
             roundTime = GameConstants.RoundTime;
             random = new Random();
         }
@@ -295,7 +314,13 @@ namespace MonoGame_DesktopGL
                 {
                     currentGameState = GameState.Won;
                 }
-                roundTimer -= gameTime.ElapsedGameTime;
+                CanMove = !breathRecogniser.IsExhaling;
+                //Timer only counts down when the player has finished a breath
+                if (CanMove)
+                {
+                    roundTimer -= gameTime.ElapsedGameTime;
+                }
+
                 if ((roundTimer < TimeSpan.Zero) &&
                     (retrievedFuelCells != GameConstants.NumFuelCells))
                 {
@@ -542,13 +567,22 @@ namespace MonoGame_DesktopGL
             Rectangle pressureRectBar;
             Rectangle pressureBar;
 
+            float destHeight = GameConstants.MaxPower * Math.Min((pressurevalue / maxpressurevalue), 1);
+
+            var newPower = CurrentPower + ((destHeight - currentPower) * GameConstants.Smoothing);
+
+            if (newPower > CurrentPower)
+            {
+                CurrentPower = newPower;
+            }
+
             str1 += (roundTimer.Seconds).ToString();
 
             //Calculate str1 position
             rectSafeArea = GraphicsDevice.Viewport.TitleSafeArea;
             //Calculate pressure rect
             pressureRectBar = new Rectangle(rectSafeArea.Width - 50,10,40,110);
-            pressureBar = new Rectangle(pressureRectBar.X + 5, pressureRectBar.Y + 5, 30, (int)(pressurevalue * 100));
+            pressureBar = new Rectangle(pressureRectBar.X + 5, 110 - (int)(currentPower), 30, (int)(currentPower));
 
             xOffsetText = rectSafeArea.X;
             yOffsetText = rectSafeArea.Y;
@@ -562,7 +596,9 @@ namespace MonoGame_DesktopGL
             strPosition.Y += strSize.Y;
             spriteBatch.DrawString(statsFont, str2, strPosition, Color.White);
             strPosition.Y += strSize.Y;
-            spriteBatch.DrawString(statsFont, "pressure: " + pressurevalue, strPosition, Color.White);
+            spriteBatch.DrawString(statsFont, "Output Pressure is: [" + pressurevalue + "]", strPosition, Color.White);
+            strPosition.Y += strSize.Y;
+            spriteBatch.DrawString(statsFont, "CanMove [" + CanMove + "]", strPosition, Color.White);
 
             spriteBatch.Draw(blankTexture, pressureRectBar, Color.White);
             spriteBatch.Draw(blankTexture, pressureBar, Color.Green);
@@ -591,7 +627,9 @@ namespace MonoGame_DesktopGL
                 //Do Something with the Button
                 fizzyoButtonPressed = true;
             }
-            pressurevalue = fizzyo.Pressure(); // Get the current Pressure value
+            var pressureReading = fizzyo.Pressure(); // Get the current Pressure value
+            breathRecogniser.AddSample(gameTime.ElapsedGameTime.Seconds, pressureReading);
+            pressurevalue = pressureReading;
         }
 
         #region Disposing
