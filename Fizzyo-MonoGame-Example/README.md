@@ -89,35 +89,32 @@ float pressure = FizzyoDevice.Pressure();
 > ```
 
 ----
-### New BreathRecogniser control:
+## New BreathRecogniser control:
 To help with detecting breath lengths / pressure and whether the player is blowing in to the Fizzyo device, a helper class has been provided.
 Breath Analyser class decouples the logic of recognizing breaths from a stream of pressure samples from acting on the recognition.
 
 To use:
 
-    1. Create an instance of BreathAnalyser, passing in the calibration values for MaxPressure and MaxBreathLength:
-
-> These values should be obtained through calibration, asking the user to perform a long slow initial breath to determine the maximum breath power and length.
-
+1. Create an instance of BreathAnalyser, passing in the calibration values for MaxPressure and MaxBreathLength: 
 ```
-BreathAnalyser breathAnalyser = new BreathAnalyser(MaxPressure, MaxBreathLength);
+    BreathAnalyser breathAnalyser = new BreathAnalyser(MaxPressure, MaxBreathLength);
 ```
-    2. Register for the ExhalationCompleteEvent: 
+2. Register for the ExhalationCompleteEvent: 
 ```
     breathAnalyser.ExhalationComplete += ExhalationCompleteHandler;
 ```
-    3. Add pressure samples in the update loop: 
+3. Add pressure samples in the update loop: 
 ```
-AddSample(Time.DeltaTime, pressure);
+    AddSample(Time.DeltaTime, pressure);
 ```
-    4. The event will fire at the end of an exhaled breath and provide information for:
+4. The event will fire at the end of an exhaled breath and provide information for:
     
        a) BreathLength
        b) BreathCount
        c) ExhaledVolume
        d) IsBreathGood
     
-    5. You can interrogate the breath analyser at any time to determine:
+5. You can interrogate the breath analyser at any time to determine:
     
        a) BreathLength
        b) BreathCount
