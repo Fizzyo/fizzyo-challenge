@@ -7,7 +7,7 @@ If you are a game developer it’s as easy as 1-2-3.
 
 The Fizzyo device appears as a Joystick on the computer, so you simply need to have your game interpret joystick inputs.
 
-> ### Check the [README here](https://github.com/fizzyo-challenge/Fizzyo/) for more details on the currently supported platforms .
+> ### Check the [README here](https://github.com/Fizzyo/fizzyo-challenge/tree/master/Fizzyo) for more details on the currently supported platforms .
 > but feel free to add your own engine / framework support.
 
 ----

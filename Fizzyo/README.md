@@ -12,8 +12,8 @@ The Fizzyo device appears as a Joystick on the computer, so you simply need to h
 
 We currently provide two frameworks for use in building games for the Fizzyo pressure detection device:
 
-* ## [Unity](https://github.com/fizzyo-challenge/Fizzyo/Fizzyo-Unity/)
-* ## [MonoGame](https://github.com/fizzyo-challenge/Fizzyo/Fizzyo-MonoGame/)
+* ## [Unity](https://github.com/Fizzyo/fizzyo-challenge/tree/master/Fizzyo/Fizzyo-Unity)
+* ## [MonoGame](https://github.com/Fizzyo/fizzyo-challenge/tree/master/Fizzyo/Fizzyo-MonoGame)
 
 Full instructions are included for each engine / framework use of the components
 
