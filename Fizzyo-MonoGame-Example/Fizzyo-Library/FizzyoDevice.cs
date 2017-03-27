@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using System;
 using System.IO;
 
 namespace Fizzyo_Library
@@ -12,7 +11,6 @@ namespace Fizzyo_Library
         //public 
         public bool useRecordedData = true;
         public bool loop = true;
-        public string debugTextPressure = string.Empty;
 
         //protected
         protected string[] recordedData;
@@ -43,11 +41,14 @@ namespace Fizzyo_Library
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            pollTimer += gameTime.ElapsedGameTime.Milliseconds;
-            if (pollTimer > pollTimerInterval)
+            if (useRecordedData)
             {
-                pollTimer = 0;
-                PollLoggedData();
+                pollTimer += gameTime.ElapsedGameTime.Milliseconds;
+                if (pollTimer > pollTimerInterval)
+                {
+                    pollTimer = 0;
+                    PollLoggedData();
+                }
             }
             base.Update(gameTime);
         }
@@ -65,60 +66,81 @@ namespace Fizzyo_Library
 
         #region public Functions
 
-        // Use this for initialization
+        /// <summary>
+        /// Use recorded data from file, for example using the following code:
+        ///
+        /// public string recordedDataPath = @"Data/FizzyoData_3min.fiz";
+        /// using (FileStream fs = new FileStream(recordedDataPath, FileMode.Open))
+        /// {
+        ///    using (StreamReader sr = new StreamReader(fs))
+        ///    {
+        ///        List<String> inputArray = new List<string>();
+        ///        while (sr.Peek() >= 0)
+        ///        {
+        ///            inputArray.Add(sr.ReadLine());
+        ///        }
+        ///        fizzyo.LoadRecordedData(inputArray.ToArray());
+        ///    }
+        /// }
+        /// </summary>
+        /// <param name="input"></param>
         public void LoadRecordedData(string[] input)
         {
             recordedData = input;
         }
 
         /// <summary>
-        /// If useRecordedData is set to false pressure data is streamed from the device or streamed from a log file if set to true.
+        /// If useRecordedData is set to true, data is supplied from the RecordedArray, else pressure data is streamed direct from the device.
         /// </summary>
         /// <returns>pressure data reported from device or log file with a range of -1 - 1.</returns>
         public float Pressure()
         {
             if (useRecordedData)
             {
-                if (debugTextPressure != null)
-                {
-                    debugTextPressure = String.Format("{0:0}", pressure * 100);
-                }
                 return pressure;
             }
             else
             {
+                float p;
                 //Check Gamepad stick
-                float p = Input.GetThumbStickLeft(0).X;
+                p = Input.GetThumbStickLeft(0).X;
                 //Check left arrow - decrease if pressed
                 if (Input.IsKeyPressed(Keys.Left)) p--;
                 //check right arrow - increase if pressed
                 if (Input.IsKeyPressed(Keys.Right)) p++;
 
-                //Update pressure text display
-                debugTextPressure = String.Format("{0:0}", p * 100);
-
                 return p;
             }
         }
 
+        /// <summary>
+        /// Is the Fizzyo device button down?
+        /// </summary>
+        /// <returns>bool</returns>
         public bool ButtonDown()
         {
             return Input.PlayerPressedFire(0);
         }
 
+        /// <summary>
+        /// Pull the next recorded value from the RecordedArray
+        /// </summary>
         void PollLoggedData()
         {
-            text = recordedData[recordedIndex];
-            recordedIndex++;
-            string[] parts = text.Split(' ');
-            if (parts.Length == 2 && parts[0] == "v")
+            if (recordedData != null && recordedData.Length > 0)
             {
-                float pressure = float.Parse(parts[1], System.Globalization.CultureInfo.InvariantCulture.NumberFormat) / 100.0f;
-                this.pressure = pressure;
-            }
-            if (loop && recordedIndex >= recordedData.Length)
-            {
-                recordedIndex = 0;
+                text = recordedData[recordedIndex];
+                recordedIndex++;
+                string[] parts = text.Split(' ');
+                if (parts.Length == 2 && parts[0] == "v")
+                {
+                    float pressure = float.Parse(parts[1], System.Globalization.CultureInfo.InvariantCulture.NumberFormat) / 100.0f;
+                    this.pressure = pressure;
+                }
+                if (loop && recordedIndex >= recordedData.Length)
+                {
+                    recordedIndex = 0;
+                }
             }
         }
         #endregion

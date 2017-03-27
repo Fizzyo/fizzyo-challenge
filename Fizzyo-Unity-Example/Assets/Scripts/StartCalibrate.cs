@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 public class StartCalibrate : MonoBehaviour
 {
     //public 
-    public Text startText;
-    public GameObject pressureBar;
-    public ParticleSystem particleSystem;
+    public Text StartText;
+    public GameObject PressureBar;
+    public ParticleSystem ParticleSystem;
 
     //private
     private float maxPressureReading = 0;
@@ -23,22 +23,22 @@ public class StartCalibrate : MonoBehaviour
     {
         // Create new stopwatch.
         blowingStopwatch = new System.Diagnostics.Stopwatch();
-        startText.text = "" + countdownToStart;
+        StartText.text = "" + countdownToStart;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float pressure = FizzyoDevice.Instance().Pressure();
+        float pressure = Fizzyo.FizzyoDevice.Instance().Pressure();
 
         //animate breath particles
-        particleSystem.startSpeed = pressure * 500;
-        particleSystem.startLifetime = pressure * 1;
+        ParticleSystem.startSpeed = pressure * 500;
+        ParticleSystem.startLifetime = pressure * 1;
 
         //set pressure bar height
         float destHeight = -20 * pressure;
-        float y = pressureBar.transform.localPosition.y + ((destHeight - pressureBar.transform.localPosition.y) * smoothing);
-        pressureBar.transform.localPosition = new Vector3(pressureBar.transform.localPosition.x, y, pressureBar.transform.localPosition.z);
+        float y = PressureBar.transform.localPosition.y + ((destHeight - PressureBar.transform.localPosition.y) * smoothing);
+        PressureBar.transform.localPosition = new Vector3(PressureBar.transform.localPosition.x, y, PressureBar.transform.localPosition.z);
 
 
         if (pressure > minPressureThreshold)
@@ -49,7 +49,7 @@ public class StartCalibrate : MonoBehaviour
 
             if (timeToStart > 0)
             {
-                startText.text = "" + timeToStart;
+                StartText.text = "" + timeToStart;
             }
             else
             {

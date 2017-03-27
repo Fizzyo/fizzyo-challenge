@@ -1,4 +1,5 @@
 # Thanks for helping the Microsoft Fizzyo Challenge
+----
 
 Our hope is the Fizzyo device this will motivate children to do their physio every day and potentially help other families with Cystic Fibrosis as well!
 
@@ -6,12 +7,14 @@ If you are a game developer it’s as easy as 1-2-3.
 
 The Fizzyo device appears as a Joystick on the computer, so you simply need to have your game interpret joystick inputs.
 
+----
 ## We allow for 2 types of inputs:
 
  - Breath – This appears as the Horizontal axis of the joystick, (float) returns breath strength from (-1 – 1) with 0 being not breathing, > 0.7 blowing or breathing out hard and < -0.5 breathing in hard
  
  - Button Press – We’ve added 1 button to the device to make game interactions a little more sophisticated. This button appears as Fire1 from a joystick control.
 
+----
 ## MonoGame sample details:
 The Monogame sample is comprised of two projects:
 
@@ -39,6 +42,7 @@ The modifications made to adapt the Fizzyo device include:
 * Added an EngineCharge UI element to show how much energy the ship has, charged using the output from the Fizzyo Device pressure
 * Updated the FuelCarrier input handling so that it only moves when the player is not doing a breath and that movement depletes the ships charge. (also updated to use the InputState library)
 
+----
 ## Fizzyo device use with MonoGame
 
 Grab the Fizzyo library from the sample and add it to your project as follows:
@@ -84,6 +88,7 @@ float pressure = FizzyoDevice.Pressure();
 > float pressure = GamePad.GetState(0).ThumbSticks.Left.X;
 > ```
 
+----
 ### New BreathRecogniser control:
 To help with detecting breath lengths / pressure and whether the player is blowing in to the Fizzyo device, a helper class has been provided.
 Breath Analyser class decouples the logic of recognizing breaths from a stream of pressure samples from acting on the recognition.
@@ -127,6 +132,7 @@ IsBreathGood()
 ```
 This currently returns true if the average breath pressure and breath length is within 80% of the max.
 
+----
 ## Typical Physio Sequence
 - 9 - 10 cycles of the following routine
 - Long slow breadth in until lungs are full (typically 2 sec depending on size of child)
@@ -134,6 +140,7 @@ This currently returns true if the average breath pressure and breath length is 
 - Exhale out active but not forced (typically 3 secs in length maintained velocity) 
 - Then a huff/cough (the device is typically removed) This is forceful and the most important as its part of airway clearance (can this be used with your game)
 
+----
 ## Game Types - think about the exercise
 
 ### Games children have suggested
@@ -141,6 +148,7 @@ This currently returns true if the average breath pressure and breath length is 
 - Geometry Dash/Flappy Bird (Jumping or movement)
 - Angry Bird (Breadth to charge/fire)
 
+----
 ## Game requirements
 
 Keep in mind that we don’t want to force the children to blow to a certain pressure or for a certain amount of time. This is really up to the individual doing the exercises, we just want to detect a blow.
@@ -149,6 +157,7 @@ Designing a game for these limited interactions can be challenging! A good play 
 
 In relation to output of the games from Health Hack we would like to implement a specific requirement / specification of games for use with the Fizzyo devices.
 
+----
 ## Hardware and test data being provided
 
 ### Airway Clearance Physio Devices
@@ -169,6 +178,7 @@ The MonoGame Project provides the FizzyoDevice classes in a separate PCL project
 
 > Note, when adding the test data to your project, be sure to set the files to "Copy Always" in the Build opions on the properties pane, else they will not load.
 
+----
 ## How the Devices are used by Patients and how this should be related to game play
 
 - Although getting a decent sized breath during inspiration is important – most of the focus is on expiration (this is the part where airway clearance is most effective).
@@ -186,6 +196,7 @@ The MonoGame Project provides the FizzyoDevice classes in a separate PCL project
 
 - The resistance in mid expiration for PEP should be 10-20cm H2O (ideally 12-15) measured by PEP manometer (in circuit) for mid-part of expiration.
 
+----
 ## Physio Routine for children
 
 ![Physio Routine](../Routine.jpg)
@@ -198,12 +209,14 @@ The MonoGame Project provides the FizzyoDevice classes in a separate PCL project
 
 - It is important that we don’t incentivise more effort but do motivate for a longer blow, eg. acceleration could increase the longer the blow but definitely not accelerate with increased effort beyond the threshold trigger point.
 
+----
 ## Useful videos on Patient physio and technique
 
 - [Which is the best Airway Clearance method for Cystic Fibrosis?](https://www.youtube.com/watch?v=Wn5o5AgD9m0)
 - [Cystic fibrosis breathing techniques – acapella device](https://www.youtube.com/watch?v=DJFp6A_p2R8)
 - [Cystic fibrosis breathing techniques – positive expiratory pressure (PEP) mask](https://www.youtube.com/watch?v=C1SLdjvNg9U)
 
+----
 ## Useful Resources for Cloud Gaming
 
 ### Service Fabric Opensource Gaming Framework
@@ -216,10 +229,12 @@ The MonoGame Project provides the FizzyoDevice classes in a separate PCL project
 - [Azure SDK](https://azure.microsoft.com/en-gb/downloads/) - included with Visual Studio.
 In future you can add Windows 10/Xbox Live Creators Update - - - [Add Xbox Gaming Features to your game - In Preview](https://developer.microsoft.com/en-us/games/xbox/xboxlive/creator)
 
+----
 ## Visualisation and Charting using Microsoft PowerBI
 
 A great tool for Visualisation and charting is [Microsoft PowerBI](http://www.powerbi.com) if your new to PowerBI or data visualisation then please watch this short webinar which wil give you an overview of data visualisation with [Power BI](https://info.microsoft.com/UK-MSFT-WBNR-FY17-12Dec-05-MicrosoftAzureBringyourDatatoLifePowerBIWebinar-269449_Registration.html)
 
+----
 ## Game Deliverables
 
 - All output will be under GNU open-source licensing and all entries stored within [this organisation](https://github.com/Fizzyo).

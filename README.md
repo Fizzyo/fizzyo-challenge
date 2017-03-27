@@ -1,4 +1,5 @@
 # Thanks for helping the Microsoft Fizzyo Challenge
+----
 
 Our hope is the Fizzyo device this will motivate children to do their physio every day and potentially help other families with Cystic Fibrosis as well!
 
@@ -6,24 +7,40 @@ If you are a game developer it’s as easy as 1-2-3.
 
 The Fizzyo device appears as a Joystick on the computer, so you simply need to have your game interpret joystick inputs.
 
+> ### Check the [README here](https://github.com/fizzyo-challenge/Fizzyo/README) for more details on the currently supported platforms .
+> but feel free to add your own engine / framework support.
+
+----
 ### We allow for 2 types of inputs:
 
  - Breath – This appears as the Horizontal axis of the joystick, (float) returns breath strength from (-1 – 1) with 0 being not breathing, > 0.7 blowing or breathing out hard and < -0.5 breathing in hard
  
  - Button Press – We’ve added 1 button to the device to make game interactions a little more sophisticated. This button appears as Fire1 from a joystick control.
 
-### If you are developing in Unity, you can use the following commands:
+----
+### If you are developing in [Unity](https://github.com/fizzyo-challenge/Fizzyo/Fizzyo-Unity/README), you can use the following commands:
 
 ```
 //(bool) Will return if the Fizzyo button is pressed or not.
+bool buttonPressed = Fizzyo.FizzyoDevice.Instance().ButtonDown();
+
+//Alternatively, you can get the button state directly using:
 bool buttonPresed = Input.GetButtonDown("Fire1");
 
 //(float) returns breath strength from (-1 – 1) with 0 being not breathing,
           > 0.7 blowing or breathing out hard and < -0.5 breathing in hard
+float pressure = Fizzyo.FizzyoDevice.Instance().Pressure();
+
+//Alternatively, you can get the axis data directly using:
+
 float pressure = Input.GetAxis("Horizontal");
 ```
 
-### If you are developing in MonoGame, you can use the following commands:
+The benefit of using the functions from the device is that it allows you to use the pre-recorded data for testing, which will switch over to using live data by changing the *useRecordedData* parameter to false.
+
+----
+### If you are developing in [MonoGame](https://github.com/fizzyo-challenge/Fizzyo/Fizzyo-MonoGame/README), you can use the following commands:
+
 Grab the Fizzyo library from the sample and reference it in your project.
 
 To capture if the button on the Fizzyo device
@@ -46,32 +63,34 @@ float pressure = GamePad.GetState(0).ThumbSticks.Left.X;
 
 With the MonoGame sample library, we also provide an InputManagement system, examine the sample in it's use.
 
+----
 ### New BreathRecogniser control:
+
 To help with detecting breath lengths / pressure and whether the player is blowing in to the Fizzyo device, a helper class has been provided.
 Breath Analyser class decouples the logic of recognizing breaths from a stream of pressure samples from acting on the recognition.
 
 To use:
 
-    1. Create an instance of BreathAnalyser, passing in the calibration values for MaxPressure and MaxBreathLength: 
+1. Create an instance of BreathAnalyser, passing in the calibration values for MaxPressure and MaxBreathLength: 
 ```
-BreathAnalyser breathAnalyser = new BreathAnalyser(MaxPressure, MaxBreathLength);
+    BreathAnalyser breathAnalyser = new BreathAnalyser(MaxPressure, MaxBreathLength);
 ```
-    2. Register for the ExhalationCompleteEvent: 
+2. Register for the ExhalationCompleteEvent: 
 ```
     breathAnalyser.ExhalationComplete += ExhalationCompleteHandler;
 ```
-    3. Add pressure samples in the update loop: 
+3. Add pressure samples in the update loop: 
 ```
-AddSample(Time.DeltaTime, pressure);
+    AddSample(Time.DeltaTime, pressure);
 ```
-    4. The event will fire at the end of an exhaled breath and provide information for:
+4. The event will fire at the end of an exhaled breath and provide information for:
     
        a) BreathLength
        b) BreathCount
        c) ExhaledVolume
        d) IsBreathGood
     
-    5. You can interrogate the breath analyser at any time to determine:
+5. You can interrogate the breath analyser at any time to determine:
     
        a) BreathLength
        b) BreathCount
@@ -86,13 +105,16 @@ IsBreathGood()
 ```
 This currently returns true if the average breath pressure and breath length is within 80% of the max.
 
+----
 ## Typical Physio Sequence
+
 - 9 - 10 cycles of the following routine
 - Long slow breadth in until lungs are full (typically 2 sec depending on size of child)
 - Hold the breadth 
 - Exhale out active but not forced (typically 3 secs in length maintained velocity) 
 - Then a huff/cough (the device is typically removed) This is forceful and the most important as its part of airway clearance (can this be used with your game)
 
+----
 ## Game Types - think about the exercise
 
 ### Games children have suggested
@@ -100,6 +122,7 @@ This currently returns true if the average breath pressure and breath length is 
 - Geometry Dash/Flappy Bird (Jumping or movement)
 - Angry Bird (Breadth to charge/fire)
 
+----
 ## Game requirements
 
 Keep in mind that we don’t want to force the children to blow to a certain pressure or for a certain amount of time. This is really up to the individual doing the exercises, we just want to detect a blow.
@@ -108,6 +131,7 @@ Designing a game for these limited interactions can be challenging! A good play 
 
 In relation to output of the games from Health Hack we would like to implement a specific requirement / specification of games for use with the Fizzyo devices.
 
+----
 ## Hardware and test data being provided
 
 ### Airway Clearance Physio Devices
@@ -128,6 +152,7 @@ The MonoGame Project provides the FizzyoDevice classes in a separate PCL project
 
 - We have provided Test Harnesses and sample data. The data data set of captured results from the devices are for games testing. This includes an example that allows you to load and playback breath data saved from a fizzyo device.
 
+----
 ## How the Devices are used by Patients and how this should be related to game play
 
 - Although getting a decent sized breath during inspiration is important – most of the focus is on expiration (this is the part where airway clearance is most effective).
@@ -145,6 +170,7 @@ The MonoGame Project provides the FizzyoDevice classes in a separate PCL project
 
 - The resistance in mid expiration for PEP should be 10-20cm H2O (ideally 12-15) measured by PEP manometer (in circuit) for mid-part of expiration.
 
+----
 ## Physio Routine for children
 
 ![Physio Routine](Routine.jpg)
@@ -157,12 +183,14 @@ The MonoGame Project provides the FizzyoDevice classes in a separate PCL project
 
 - It is important that we don’t incentivise more effort but do motivate for a longer blow, eg. acceleration could increase the longer the blow but definitely not accelerate with increased effort beyond the threshold trigger point.
 
+----
 ## Useful videos on Patient physio and technique
 
 - [Which is the best Airway Clearance method for Cystic Fibrosis?](https://www.youtube.com/watch?v=Wn5o5AgD9m0)
 - [Cystic fibrosis breathing techniques – acapella device](https://www.youtube.com/watch?v=DJFp6A_p2R8)
 - [Cystic fibrosis breathing techniques – positive expiratory pressure (PEP) mask](https://www.youtube.com/watch?v=C1SLdjvNg9U)
 
+----
 ## Gaming, Cloud Services & Backend
 
 - You will need to use [Unity3d] (http://www.unity3d.com) for you game development we want games for Android, iOS and Windows. 
@@ -179,6 +207,7 @@ The MonoGame Project provides the FizzyoDevice classes in a separate PCL project
 
 - [More Detail on Azure Cloud for Gaming](https://azure.microsoft.com/en-us/solutions/gaming/)
 
+----
 ## Useful Resources for Cloud Gaming
 
 ### Service Fabric Opensource Gaming Framework
@@ -192,10 +221,12 @@ The MonoGame Project provides the FizzyoDevice classes in a separate PCL project
 - [Using App Services to Create a Leaderboard](http://www.deadlyfingers.net/azure/azure-app-services-for-unity3d/)
 In future you can add Windows 10/Xbox Live Creators Update - - - [Add Xbox Gaming Features to your game - In Preview](https://developer.microsoft.com/en-us/games/xbox/xboxlive/creator)
 
+----
 ## Visualisation and Charting using Microsoft PowerBI
 
 A great tool for Visualisation and charting is [Microsoft PowerBI](http://www.powerbi.com) if your new to PowerBI or data visualisation then please watch this short webinar which wil give you an overview of data visualisation with [Power BI](https://info.microsoft.com/UK-MSFT-WBNR-FY17-12Dec-05-MicrosoftAzureBringyourDatatoLifePowerBIWebinar-269449_Registration.html)
 
+----
 ## Game Deliverables
 
 - All output fro  be under GNU open-source licensing and all entries stored within [this organisation](https://github.com/Fizzyo).
@@ -214,6 +245,7 @@ A great tool for Visualisation and charting is [Microsoft PowerBI](http://www.po
 
 - Microsoft Azure Cloud services will be provided to all attendees to add cloud need services to the hack entries.
 
+----
 ## Submission requirements for Github Repo
 
 - A brief presentation on the purpose of your game and how to use it.
