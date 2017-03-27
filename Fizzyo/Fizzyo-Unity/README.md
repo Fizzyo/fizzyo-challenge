@@ -19,9 +19,9 @@ In the Unity folder, you have all the Fizzyo scripts required to get started, in
 - FizzyoDevice - main Fizzyo device component exposing the Breath output and the device button.
 - BreathRecogniser - helper class to examine the Fizzyo device output with details / analysis of each breath
 
-These have also been packaged up in to a [.UnityAsset](https://github.com/fizzyo-challenge/Fizzyo/Fizzyo-Unity/FizzyoDevice.unitypackage?raw=true) for easy inclusion in your project.
+These have also been packaged up in to a [.UnityAsset](https://github.com/Fizzyo/fizzyo-challenge/blob/master/Fizzyo/Fizzyo-Unity/FizzyoDevice.unitypackage?raw=true) for easy inclusion in your project.
 
-### [Fizzyo Unity Asset](https://github.com/fizzyo-challenge/Fizzyo/Fizzyo-Unity/FizzyoDevice.unitypackage?raw=true)
+### [Fizzyo Unity Asset](https://github.com/Fizzyo/fizzyo-challenge/blob/master/Fizzyo/Fizzyo-Unity/FizzyoDevice.unitypackage?raw=true)
 
 ----
 ## If you are developing in Unity, you can use the following commands:

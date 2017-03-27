@@ -18,7 +18,7 @@ The Fizzyo device appears as a Joystick on the computer, so you simply need to h
  - Button Press – We’ve added 1 button to the device to make game interactions a little more sophisticated. This button appears as Fire1 from a joystick control.
 
 ----
-### If you are developing in [Unity](https://github.com/fizzyo-challenge/Fizzyo/Fizzyo-Unity/), you can use the following commands:
+### If you are developing in [Unity](https://github.com/Fizzyo/fizzyo-challenge/tree/master/Fizzyo/Fizzyo-Unity), you can use the following commands:
 
 ```
 //(bool) Will return if the Fizzyo button is pressed or not.
@@ -39,7 +39,7 @@ float pressure = Input.GetAxis("Horizontal");
 The benefit of using the functions from the device is that it allows you to use the pre-recorded data for testing, which will switch over to using live data by changing the *useRecordedData* parameter to false.
 
 ----
-### If you are developing in [MonoGame](https://github.com/fizzyo-challenge/Fizzyo/Fizzyo-MonoGame/), you can use the following commands:
+### If you are developing in [MonoGame](https://github.com/Fizzyo/fizzyo-challenge/tree/master/Fizzyo/Fizzyo-MonoGame), you can use the following commands:
 
 Grab the Fizzyo library from the sample and reference it in your project.
 
