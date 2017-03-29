@@ -229,7 +229,7 @@ A great tool for Visualisation and charting is [Microsoft PowerBI](http://www.po
 ----
 ## Game Deliverables
 
-- All output fro  be under GNU open-source licensing and all entries stored within [this organisation](https://github.com/Fizzyo).
+- All output fro  be under GNU open-source licensing and all entries stored within [this organisation](https://github.com/Fizzyo/Games).
 
 - All games should be ideally developed to become cross platform iOS, Android, Windows 10 and Windows Desktop the input for the game will use Phyiso equipment specially PEP and Acapella devices.
 
