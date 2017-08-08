@@ -10,6 +10,8 @@ The Fizzyo device appears as a Joystick on the computer, so you simply need to h
 > ### Check the [README here](https://github.com/Fizzyo/fizzyo-challenge/tree/master/Fizzyo) for more details on the currently supported platforms .
 > but feel free to add your own engine / framework support.
 
+All the Frameworks are stored at (https://github.com/Fizzyo/Games) 
+
 ----
 ### We allow for 2 types of inputs:
 
@@ -18,7 +20,7 @@ The Fizzyo device appears as a Joystick on the computer, so you simply need to h
  - Button Press – We’ve added 1 button to the device to make game interactions a little more sophisticated. This button appears as Fire1 from a joystick control.
 
 ----
-### If you are developing in [Unity](https://github.com/Fizzyo/fizzyo-challenge/tree/master/Fizzyo/Fizzyo-Unity), you can use the following commands:
+### If you are developing in [Unity](https://github.com/Fizzyo/games), you can use the following commands:
 
 ```
 //(bool) Will return if the Fizzyo button is pressed or not.
@@ -39,7 +41,7 @@ float pressure = Input.GetAxis("Horizontal");
 The benefit of using the functions from the device is that it allows you to use the pre-recorded data for testing, which will switch over to using live data by changing the *useRecordedData* parameter to false.
 
 ----
-### If you are developing in [MonoGame](https://github.com/Fizzyo/fizzyo-challenge/tree/master/Fizzyo/Fizzyo-MonoGame), you can use the following commands:
+### If you are developing in [MonoGame](https://github.com/Fizzyo/games), you can use the following commands:
 
 Grab the Fizzyo library from the sample and reference it in your project.
 
@@ -139,15 +141,12 @@ In relation to output of the games from Health Hack we would like to implement a
 ![Airway Clearance Devices](Airway.jpg)
 
 
-- We will be making available 3 x Fizzyo PEP Engineering devices to hacker for testing of game content
-
-- We will be making available 3 x Fizzyo Acepella Engineering devices to hacker for testing of game content
-
+-
 ### Test Data from devices + Samples
 
-- We have provided a Unity Sample Game which shows the input methods - see [Fizzyo-Unity-Example](https://github.com/ichealthhack/fizzyo-challenge/tree/master/Fizzyo-Unity-Example) Folder which contains pre calibration information, a sample game and test harness + test data
+- We have provided a Unity Sample Game which shows the input methods - see [Fizzyo-Unity-Example](https://github.com/Fizzyo/Games/tree/master/Sample%20Games/Fizzyo-Unity-Example) Folder which contains pre calibration information, a sample game and test harness + test data
 
-- We have provided a MonoGame Sample Game which shows the input methods - see [Fizzyo-Monogame-Example](https://github.com/ichealthhack/fizzyo-challenge/tree/master/Fizzyo-MonoGame-Example) Folder which contains pre calibration information, a sample game and test harness + test data
+- We have provided a MonoGame Sample Game which shows the input methods - see [Fizzyo-Monogame-Example](https://github.com/Fizzyo/Games/tree/master/Sample%20Games/Fizzyo-MonoGame-Example) Folder which contains pre calibration information, a sample game and test harness + test data
 The MonoGame Project provides the FizzyoDevice classes in a separate PCL project, for easy use in your game together with a handy InputManagement system and the BreathAnalyser helper.
 
 - We have provided Test Harnesses and sample data. The data data set of captured results from the devices are for games testing. This includes an example that allows you to load and playback breath data saved from a fizzyo device.
@@ -191,78 +190,4 @@ The MonoGame Project provides the FizzyoDevice classes in a separate PCL project
 - [Cystic fibrosis breathing techniques – positive expiratory pressure (PEP) mask](https://www.youtube.com/watch?v=C1SLdjvNg9U)
 
 ----
-## Gaming, Cloud Services & Backend
-
-- You will need to use [Unity3d] (http://www.unity3d.com) for you game development we want games for Android, iOS and Windows. 
-
-- If your new to Unity you can build 2D or 3D games for the Fizzyo device [see] (https://unity3d.com/learn) for resources and tutorials.
-
-- [Microsoft Azure](https://azure.microsoft.com)  
-
-- If you develop any cloud services please ensure all necessary scripts, database schema and scripts are added to the github repo.
-
-- If your new to Azure you watch this quick webinar [How to Get Started on Azure](https://info.microsoft.com/UK-MSFT-WBNR-FY17-11Nov-24-HowtoGetStartedonAzure-269444_Registration.html)
-
-- Azure cloud services offer you the ability to add storage, game save, leaderboards, High Scores.
-
-- [More Detail on Azure Cloud for Gaming](https://azure.microsoft.com/en-us/solutions/gaming/)
-
-----
-## Useful Resources for Cloud Gaming
-
-### Service Fabric Opensource Gaming Framework
-- [What is Service Fabric](https://azure.microsoft.com/en-us/services/service-fabric/)
-- [Open Source Gaming Framework with scalable, SignalR gateway](https://github.com/SthlmTechAngels/GDC2017ServiceFabric) 
-- [Unity Tanks demo, becomes multiplayer with Service Fabric](https://github.com/SthlmTechAngels/GDC2017Unity3d)
-
-### Azure SDK and tools
-
-- [Unity Azure SDK](https://github.com/Unity3dAzure)
-- [Using App Services to Create a Leaderboard](http://www.deadlyfingers.net/azure/azure-app-services-for-unity3d/)
-In future you can add Windows 10/Xbox Live Creators Update - - - [Add Xbox Gaming Features to your game - In Preview](https://developer.microsoft.com/en-us/games/xbox/xboxlive/creator)
-
-----
-## Visualisation and Charting using Microsoft PowerBI
-
-A great tool for Visualisation and charting is [Microsoft PowerBI](http://www.powerbi.com) if your new to PowerBI or data visualisation then please watch this short webinar which wil give you an overview of data visualisation with [Power BI](https://info.microsoft.com/UK-MSFT-WBNR-FY17-12Dec-05-MicrosoftAzureBringyourDatatoLifePowerBIWebinar-269449_Registration.html)
-
-----
-## Game Deliverables
-
-- All output fro  be under GNU open-source licensing and all entries stored within [this organisation](https://github.com/Fizzyo/Games).
-
-- All games should be ideally developed to become cross platform iOS, Android, Windows 10 and Windows Desktop the input for the game will use Phyiso equipment specially PEP and Acapella devices.
-
-- Our recommendation is that Unity3D is preferred development tool due to extensive cross platform support.
-
-- Games are intended for an age range of 4 – 18 year olds
-
-- Games should ideally include a competitive element so multiple or compete based games
-
-- Games should ideally include a leaderboard service to allow children to compete
-
-- Games can have a chat aspect but ideally this should be done within controlled gaming environments such as google play, Xbox live or Apple Game Center to ensure privacy.
-
-- Microsoft Azure Cloud services will be provided to all attendees to add cloud need services to the hack entries.
-
-----
-## Submission requirements for Github Repo
-
-- A brief presentation on the purpose of your game and how to use it.
-
-- Uploaded source control as per the requirements
-
-- A live demo for judges to experience game app and ask questions 
-
-- All code and scripting must be done during the time of the hackathon
-
-- Existing Unity Assets from the asset store must be described and listed prior to judging and clearly listed as additional assets' with installation instructions on the GitHub repo
-
-- Art assets such as pictures, picture libraries, 3d models or sound/music files are allowed but must be listed as such prior to judging and referenced within GitHub repo
-
-- No copyrighted materials are submitted to GitHub repo
-
-- Input from the pep devices should be mapped to Unity3D joystick controls
-
-- Details of the games architecture and database schemas should be documented within the submissions
 
