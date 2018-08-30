@@ -1,13 +1,13 @@
-# Thanks for helping the Microsoft Fizzyo Challenge
+# Thanks for helping the Microsoft Fizzyo 
 ----
 
-Our hope is the Fizzyo device this will motivate children to do their physio every day and potentially help other families with Cystic Fibrosis as well!
+Our hope is the Fizzyo device will motivate children to do their physio every day and potentially help other families with Cystic Fibrosis as well!
 
 If you are a game developer it’s as easy as 1-2-3.
 
 The Fizzyo device appears as a Joystick on the computer, so you simply need to have your game interpret joystick inputs.
 
-The Unity3d Fizzyo Frameworks is availabile  at https://github.com/Fizzyo/FizzyoFramework-Unity 
+The Unity3d Fizzyo Framework is available  at https://github.com/Fizzyo/FizzyoFramework-Unity 
 
 
 ----
@@ -18,14 +18,14 @@ The Unity3d Fizzyo Frameworks is availabile  at https://github.com/Fizzyo/Fizzyo
  - Button Press – We’ve added 1 button to the device to make game interactions a little more sophisticated. This button appears as Fire1 from a joystick control.
 
 ----
-### If you are developing in [Unity](https://github.com/Fizzyo/games), you can use the following commands:
+
 ## Typical Physio Sequence
 
 - 9 - 10 cycles of the following routine
-- Long slow breadth in until lungs are full (typically 2 sec depending on size of child)
-- Hold the breadth 
-- Exhale out active but not forced (typically 3 secs in length maintained velocity) 
-- Then a huff/cough (the device is typically removed) This is forceful and the most important as its part of airway clearance (can this be used with your game)
+- Long slow breadth in until lungs are full typically 2 sec depending on size of child
+- Exhale out active but not forced typically 3 secs in length depending on size of child - maintained velocity so this is about duration not velocity) 
+- Think about these durations in terms of game play 
+- The patient is required to do  a huff/cough (the device is typically removed) This is forceful and the most important as its part of airway clearance (can this be used with your game? or do you simply want to pause the game play after the end of the cycle)
 
 ----
 ## Game Types - think about the exercise
