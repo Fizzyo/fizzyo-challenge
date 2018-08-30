@@ -7,10 +7,8 @@ If you are a game developer it’s as easy as 1-2-3.
 
 The Fizzyo device appears as a Joystick on the computer, so you simply need to have your game interpret joystick inputs.
 
-> ### Check the [README here](https://github.com/Fizzyo/fizzyo-challenge/tree/master/Fizzyo) for more details on the currently supported platforms .
-> but feel free to add your own engine / framework support.
+The Unity3d Fizzyo Frameworks is availabile  at https://github.com/Fizzyo/FizzyoFramework-Unity 
 
-All the Frameworks are stored at (https://github.com/Fizzyo/Games) 
 
 ----
 ### We allow for 2 types of inputs:
@@ -21,93 +19,6 @@ All the Frameworks are stored at (https://github.com/Fizzyo/Games)
 
 ----
 ### If you are developing in [Unity](https://github.com/Fizzyo/games), you can use the following commands:
-
-```
-//(bool) Will return if the Fizzyo button is pressed or not.
-bool buttonPressed = Fizzyo.FizzyoDevice.Instance().ButtonDown();
-
-//Alternatively, you can get the button state directly using:
-bool buttonPresed = Input.GetButtonDown("Fire1");
-
-//(float) returns breath strength from (-1 – 1) with 0 being not breathing,
-          > 0.7 blowing or breathing out hard and < -0.5 breathing in hard
-float pressure = Fizzyo.FizzyoDevice.Instance().Pressure();
-
-//Alternatively, you can get the axis data directly using:
-
-float pressure = Input.GetAxis("Horizontal");
-```
-
-The benefit of using the functions from the device is that it allows you to use the pre-recorded data for testing, which will switch over to using live data by changing the *useRecordedData* parameter to false.
-
-----
-### If you are developing in [MonoGame](https://github.com/Fizzyo/games), you can use the following commands:
-
-Grab the Fizzyo library from the sample and reference it in your project.
-
-To capture if the button on the Fizzyo device
-```
-//(bool) Will return if the Fizzyo Device button is pressed or not.
-bool buttonPresed = FizzyoDevice.ButtonDown(); 
-
-//Or get the input direct from the gamePad:
-bool buttonPresed = Keyboard.GetState().IsKeyDown(Keys.A);
-```
-To get the current blowing pressure from the Fizzyo device:
-```
-//(float) returns breath strength from (-1 – 1) with 0 being not breathing,
-          > 0.7 blowing or breathing out hard and < -0.5 breathing in hard
-float pressure = FizzyoDevice.Pressure();
-
-//Or get the input direct from the gamePad:
-float pressure = GamePad.GetState(0).ThumbSticks.Left.X;
-```
-
-With the MonoGame sample library, we also provide an InputManagement system, examine the sample in it's use.
-
-----
-### New BreathRecogniser control:
-
-To help with detecting breath lengths / pressure and whether the player is blowing in to the Fizzyo device, a helper class has been provided.
-Breath Analyser class decouples the logic of recognizing breaths from a stream of pressure samples from acting on the recognition.
-
-To use:
-
-1. Create an instance of BreathAnalyser, passing in the calibration values for MaxPressure and MaxBreathLength: 
-```
-    BreathAnalyser breathAnalyser = new BreathAnalyser(MaxPressure, MaxBreathLength);
-```
-2. Register for the ExhalationCompleteEvent: 
-```
-    breathAnalyser.ExhalationComplete += ExhalationCompleteHandler;
-```
-3. Add pressure samples in the update loop: 
-```
-    AddSample(Time.DeltaTime, pressure);
-```
-4. The event will fire at the end of an exhaled breath and provide information for:
-    
-       a) BreathLength
-       b) BreathCount
-       c) ExhaledVolume
-       d) IsBreathGood
-    
-5. You can interrogate the breath analyser at any time to determine:
-    
-       a) BreathLength
-       b) BreathCount
-       c) ExhaledVolume
-       d) IsExhaling
-       e) MaxPressure
-       f) MaxBreathLength
-    
-The algorithm for determining whether a breath is good or not is encapsulated in the method:
-``` 
-IsBreathGood()
-```
-This currently returns true if the average breath pressure and breath length is within 80% of the max.
-
-----
 ## Typical Physio Sequence
 
 - 9 - 10 cycles of the following routine
@@ -133,6 +44,10 @@ Designing a game for these limited interactions can be challenging! A good play 
 
 In relation to output of the games from Health Hack we would like to implement a specific requirement / specification of games for use with the Fizzyo devices.
 
+Children may have to 10 cycles of 10 breadths with a pause for a huff and cough between each cycle.
+
+At the end of each set the game should pause and allow the children to huff and cough then press a button to continue with the game.
+
 ----
 ## Hardware and test data being provided
 
@@ -144,17 +59,14 @@ In relation to output of the games from Health Hack we would like to implement a
 -
 ### Test Data from devices + Samples
 
-- We have provided a Unity Sample Game which shows the input methods - see [Fizzyo-Unity-Example](https://github.com/Fizzyo/Games/tree/master/Sample%20Games/Fizzyo-Unity-Example) Folder which contains pre calibration information, a sample game and test harness + test data
-
-- We have provided a MonoGame Sample Game which shows the input methods - see [Fizzyo-Monogame-Example](https://github.com/Fizzyo/Games/tree/master/Sample%20Games/Fizzyo-MonoGame-Example) Folder which contains pre calibration information, a sample game and test harness + test data
-The MonoGame Project provides the FizzyoDevice classes in a separate PCL project, for easy use in your game together with a handy InputManagement system and the BreathAnalyser helper.
-
+- We have provided a Unity Sample Game which shows the input methods - see [Fizzyo-Unity-Example]https://github.com/Fizzyo/FizzyoFramework-Unity Folder which contains pre calibration information, a sample game and test harness + test data
+- 
 - We have provided Test Harnesses and sample data. The data data set of captured results from the devices are for games testing. This includes an example that allows you to load and playback breath data saved from a fizzyo device.
 
 ----
 ## How the Devices are used by Patients and how this should be related to game play
 
-- Although getting a decent sized breath during inspiration is important – most of the focus is on expiration (this is the part where airway clearance is most effective).
+- Although getting a decent sized breath during inspiration is important – most of the focus is on expiration so the length duration of the breadth (this is the part where airway clearance is most effective).
 
 - Inspiration is ‘free’ and un-resisted in all three techniques – while all 3 devices provide resistance against expiratory airflow 
 (providing ‘positive expiratory pressure’ or PEP)
