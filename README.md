@@ -9,7 +9,6 @@ The Fizzyo device appears as a Joystick on the computer, so you simply need to h
 
 The Unity3d Fizzyo Framework is available  at https://github.com/Fizzyo/FizzyoFramework-Unity 
 
-
 ----
 ### We allow for 2 types of inputs:
 
@@ -66,13 +65,18 @@ The specification of the games needs to be capable of running on the following h
 ![Airway Clearance Devices](Airway.jpg)
 
 
--
 ### Test Data from devices + Samples
 
-- We have provided a Unity Sample Game which shows the input methods - see [Fizzyo-Unity-Example]https://github.com/Fizzyo/FizzyoFramework-Unity Folder which contains pre calibration information, a sample game and test harness + test data
+- We have provided a Unity Sample Game which shows the input methods - see [Fizzyo-Unity-Example]- https://github.com/Fizzyo/FizzyoFramework-Unity Folder which contains pre calibration information, a sample game and test harness + test data
 - 
 - We have provided Test Harnesses and sample data. The data data set of captured results from the devices are for games testing. This includes an example that allows you to load and playback breath data saved from a fizzyo device.
 
+### Performance Optimisation of Unity Games 
+
+See the following Unity Resources. 
+
+- https://docs.unity3d.com/Manual/MobileOptimizationPracticalGuide.html
+- https://unity3d.com/partners/microsoft/porting-guides
 ----
 ## How the Devices are used by Patients and how this should be related to game play
 
