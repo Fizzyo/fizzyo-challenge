@@ -49,7 +49,17 @@ Children may have to 10 cycles of 10 breadths with a pause for a huff and cough 
 At the end of each set the game should pause and allow the children to huff and cough then press a button to continue with the game.
 
 ----
-## Hardware and test data being provided
+## Hardware Requirement for the Fizzyo Games
+
+Windows UWP Games are required for the patients.
+The specification of the games needs to be capable of running on the following hardware specifications. 
+
+- Resolution: 1280 x 800
+- Processor Intel® Atom™ x5-Z8300 (Cherry Trail) Quad Core, 64 Bit
+- Graphics Intel® HD Graphics (Generation 8)
+- Memory 2gb DDR3L-1600
+- Storage Internal: 32GB eMMc 
+
 
 ### Airway Clearance Physio Devices
 
